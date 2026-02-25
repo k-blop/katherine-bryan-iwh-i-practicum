@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title= title
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    h1 Create a New Record
+    a(href="/") Return to the homepage
+    
+    .form-wrapper
+      form(method="POST" action="/update-cobj")
+        label(for="name") Name:
+        input(type="text" name="name" required)
+        
+        label(for="bio") Info:
+        input(type="text" name="info" required)
+        
+        label(for="animal_type") Bean Type:
+        input(type="text" name="bean_type" required)
+        
+        button(type="submit") Submit
