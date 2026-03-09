@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const app = express();
@@ -8,6 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const PRIVATE_APP_ACCESS = process.env.PRIVATE_APP_ACCESS;
+const CUSTOM_OBJECT_ID = '2-58175935';
+const PROPERTIES = 'name,bean_type,info';
 
 const OBJECT_TYPE = 'coffee'; 
 
@@ -25,8 +28,8 @@ app.get('/', async (req, res) => {
         
         res.render('homepage', { title: 'Custom Objects | HubSpot Practicum', records });      
     } catch (error) {
-        console.error('Error getting objects:', error.message);
-        res.send('There was an error loading the homepage.');
+        console.error(error);
+        res.send('Error loading the homepage.');
     }
 });
 
@@ -35,7 +38,7 @@ app.get('/update-cobj', (req, res) => {
 });
 
 app.post('/update-cobj', async (req, res) => {
-    const updateRoute = `https://api.hubapi.com/crm/v3/objects/${OBJECT_TYPE}`;
+    const url = `https://api.hubapi.com/crm/v3/objects/${CUSTOM_OBJECT_ID}`;
     
     const newRecord = {
         properties: {
@@ -54,8 +57,8 @@ app.post('/update-cobj', async (req, res) => {
         await axios.post(updateRoute, newRecord, { headers });
         res.redirect('/');
     } catch (error) {
-        console.error('Error creating object:', error.message);
-        res.send('There was an error creating the custom object.');
+        console.error("HubSpot Error Details:", error.response ? error.response.data : error.message);
+        res.send('Error creating the custom object. Check your terminal!');
     }
 });
 
