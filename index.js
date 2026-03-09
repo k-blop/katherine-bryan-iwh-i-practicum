@@ -40,8 +40,8 @@ app.post('/update-cobj', async (req, res) => {
     const newRecord = {
         properties: {
             "name": req.body.name,
-            "bio": req.body.info,
-            "animal_type": req.body.bean_type
+            "info": req.body.info,
+            "bean_type": req.body.bean_type
         }
     };
 
