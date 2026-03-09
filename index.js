@@ -51,7 +51,7 @@ app.post('/update-cobj', async (req, res) => {
 
     try {
         await axios.post(url, newRecord, { headers });
-        res.redirect('/'); // Redirect back to homepage on success
+        res.redirect('/'); 
     } catch (error) {
         console.error("HubSpot Error Details:", error.response ? error.response.data : error.message);
         res.send('Error creating the custom object. Check your terminal!');
