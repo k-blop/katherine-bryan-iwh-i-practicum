@@ -5,16 +5,16 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1")
     link(rel="stylesheet", href="/css/style.css")
   body
-    h1 Custom Objects List
+    h1 Custom Object Directory
     a(href="/update-cobj") Add to this table
     
     table
       tr
         th Name
+        th Bran Type
         th Info
-        th Bean Type
       each record in records
         tr
           td #{record.properties.name}
-          td #{record.properties.info}
           td #{record.properties.bean_type}
+          td #{record.properties.info}
